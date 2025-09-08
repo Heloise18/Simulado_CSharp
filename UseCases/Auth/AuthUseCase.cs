@@ -1,6 +1,11 @@
+using simulado.Entities;
+
 namespace simulado.UseCases.Auth;
 
-public class AuthUseCase()
+public class AuthUseCase(
+    FicsDbContext ctx
+    // IJWTService jwt
+)
 {
     public async Task<Result<AuthResponse>> Do(AuthRequest request)
     {

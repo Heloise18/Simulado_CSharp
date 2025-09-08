@@ -12,6 +12,10 @@ using simulado.UseCases.GetList;
 using simulado.UseCases.RegisterFic;
 
 
+// using simulado.Services;
+// using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // var strConnection = Environment.GetEnvironmentVariable("SQL_CONNECTION");
@@ -26,7 +30,6 @@ builder.Services.AddDbContext<FicsDbContext>(options => {
 
 //$env:SQL_CONNECTION = "Data Source=localhost/SQLEXPRESS22;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
 
-// builder.Services.AddTransient<IJWTService, JWTService>();
 
 builder.Services.AddTransient<RegisterFicUseCase>();
 builder.Services.AddTransient<DeleteFicUseCase>();
@@ -34,26 +37,28 @@ builder.Services.AddTransient<EditListUseCase>();
 builder.Services.AddTransient<GetListUseCase>();
 builder.Services.AddTransient<AuthUseCase>();
 
+
+// builder.Services.AddSingleton<IJWTService, JWTService>();
+
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
 var keyBytes = Encoding.UTF8.GetBytes(jwtSecret);
 var key = new SymmetricSecurityKey(keyBytes);
 
 
-// builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//     .AddJwtBearer(Options =>
-//     {
-//         Options.TokenValidationParameters = new()
-//         {
-//             ValidateIssuer = false,
-//             ValidateAudience = false,
-//             ValidIssuer = "Projeto-Final-Java-hihi",
-//             ValidateIssuerSigningKey = true,
-//             ValidateLifetime = true,
-//             ClockSkew = TimeSpan.Zero,
-
-//             IssuerSigningKey = key,
-//         };
-//     });
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(Options =>
+    {
+        Options.TokenValidationParameters = new()
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidIssuer = "simulado_csharp",
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero,
+            IssuerSigningKey = key,
+        };
+    });
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -79,3 +84,4 @@ app.ConfigureDeleteFicEndpoint();
 app.ConfigureAuthEndpoints();
 
 app.Run();
+
