@@ -23,7 +23,7 @@ dotnet add package Moq
 
 JWT:
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-$env:JWT_SECRET 
+$env:JWT_SECRET ""
 
 
 SWAGGER:

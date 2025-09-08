@@ -1,6 +1,6 @@
 namespace simulado.UseCases.Auth;
 
 public record AuthRequest (
-    Guid FanficID,
-    string UserName
+    string UserName,
+    string Password
 );
