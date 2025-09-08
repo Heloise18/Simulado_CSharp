@@ -12,7 +12,7 @@ using simulado.Entities;
 namespace simulado.Migrations
 {
     [DbContext(typeof(FicsDbContext))]
-    [Migration("20250908021502_InitialModel")]
+    [Migration("20250908031442_InitialModel")]
     partial class InitialModel
     {
         /// <inheritdoc />
@@ -136,7 +136,7 @@ namespace simulado.Migrations
                     b.HasOne("simulado.Entities.User", "Owner")
                         .WithMany("Fanfics")
                         .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -147,7 +147,7 @@ namespace simulado.Migrations
                     b.HasOne("simulado.Entities.User", "Owner")
                         .WithMany("Lists")
                         .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");

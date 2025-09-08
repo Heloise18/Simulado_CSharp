@@ -21,7 +21,7 @@ builder.Services.AddDbContext<FicsDbContext>(options => {
     options.UseSqlServer(sqlConn);
 });
 
-//$env:SQL_CONNECTION = "Data Source=localhost;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
+//$env:SQL_CONNECTION = "Data Source=localhost/SQLEXPRESS22;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
 
 builder.Services.AddTransient<RegisterFicUseCase>();
 builder.Services.AddTransient<DeleteFicUseCase>();

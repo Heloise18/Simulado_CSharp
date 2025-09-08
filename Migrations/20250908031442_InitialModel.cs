@@ -43,8 +43,7 @@ namespace simulado.Migrations
                         name: "FK_Fanfics_Users_OwnerID",
                         column: x => x.OwnerID,
                         principalTable: "Users",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -63,8 +62,7 @@ namespace simulado.Migrations
                         name: "FK_ReadLists_Users_OwnerID",
                         column: x => x.OwnerID,
                         principalTable: "Users",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(

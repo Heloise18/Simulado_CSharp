@@ -133,7 +133,7 @@ namespace simulado.Migrations
                     b.HasOne("simulado.Entities.User", "Owner")
                         .WithMany("Fanfics")
                         .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -144,7 +144,7 @@ namespace simulado.Migrations
                     b.HasOne("simulado.Entities.User", "Owner")
                         .WithMany("Lists")
                         .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Owner");

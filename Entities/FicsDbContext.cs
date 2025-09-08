@@ -19,14 +19,14 @@ public class FicsDbContext(DbContextOptions options) : DbContext(options)
         .HasOne(f => f.Owner)
         .WithMany(fa => fa.Fanfics)
         .HasForeignKey(f => f.OwnerID)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.NoAction);
 
 
         model.Entity<ReadList>()
         .HasOne(re => re.Owner)
         .WithMany(r => r.Lists)
         .HasForeignKey(re => re.OwnerID)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.NoAction);
 
 
         model.Entity<User>();
