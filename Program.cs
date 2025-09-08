@@ -1,6 +1,7 @@
 
 
 using Microsoft.EntityFrameworkCore;
+using simulado.Endpoints;
 using simulado.Entities;
 using simulado.UseCases.Auth;
 using simulado.UseCases.DeleteFicByID;
@@ -21,11 +22,11 @@ var builder = WebApplication.CreateBuilder(args);
 // });
 
 
-builder.Services.AddTransient<AuthUseCase>();
+builder.Services.AddTransient<RegisterFicUseCase>();
 builder.Services.AddTransient<DeleteFicUseCase>();
 builder.Services.AddTransient<EditListUseCase>();
 builder.Services.AddTransient<GetListUseCase>();
-builder.Services.AddTransient<RegisterFicUseCase>();
+builder.Services.AddTransient<AuthUseCase>();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -36,6 +37,12 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+
+app.ConfigureGetListByTitleEndpoint();
+app.ConfigureAddFicByNameEndpoint();
+app.ConfigureRegisterFicEndpoint();
+app.ConfigureDeleteFicEndpoint();
+app.ConfigureAuthEndpoints();
 
 
 app.Run();

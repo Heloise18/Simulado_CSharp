@@ -8,20 +8,28 @@ public class FicsDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<ReadList> ReadLists => Set<ReadList>();
     public DbSet<User> Users => Set<User>();
 
-    public DbSet<Fanfics_list> FanficsList => Set<Fanfics_list>();
 
     protected override void OnModelCreating(ModelBuilder model)
     {
-        model.Entity<Fanfic>();
+        model.Entity<Fanfic>()
+        .HasMany(l => l.Lists)
+        .WithMany(f => f.Fanfics);
 
-        model.Entity<ReadList>();
+        model.Entity<Fanfic>()
+        .HasOne(f => f.Owner)
+        .WithMany(fa => fa.Fanfics)
+        .HasForeignKey(f => f.OwnerID)
+        .OnDelete(DeleteBehavior.Cascade);
+
+
+        model.Entity<ReadList>()
+        .HasOne(re => re.Owner)
+        .WithMany(r => r.Lists)
+        .HasForeignKey(re => re.OwnerID)
+        .OnDelete(DeleteBehavior.Cascade);
+
 
         model.Entity<User>();
-
-        // model.Entity<Fanfics_list>()
-        // .HasOne(l => l.Fics)
-        // .WithMany(f => f.)
-        // .HasForeignKey();
 
     }
 }
