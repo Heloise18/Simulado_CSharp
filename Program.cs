@@ -11,16 +11,17 @@ using simulado.UseCases.RegisterFic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// var strConnection = Environment.GetEnvironmentVariable("SQLCONN");
+// var strConnection = Environment.GetEnvironmentVariable("SQL_CONNECTION");
 //     builder.Services.AddDbContext<FicsDbContext>(options
 //     => options.UseSqlServer(strConnection)
 // );
 
-// builder.Services.AddDbContext<FicsDbContext>(options => {
-//     var sqlConn = Environment.GetEnvironmentVariable("SQL_CONNECTION");
-//     options.UseSqlServer(sqlConn);
-// });
+builder.Services.AddDbContext<FicsDbContext>(options => {
+    var sqlConn = Environment.GetEnvironmentVariable("SQL_CONNECTION");
+    options.UseSqlServer(sqlConn);
+});
 
+//$env:SQL_CONNECTION = "Data Source=localhost;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
 
 builder.Services.AddTransient<RegisterFicUseCase>();
 builder.Services.AddTransient<DeleteFicUseCase>();
