@@ -1,6 +1,6 @@
 namespace simulado.UseCases.EditList;
 
-public class editListUseCase()
+public class EditListUseCase()
 {
     public async Task<Result<EditListResponse>> Do(EditListRequest request)
     {
