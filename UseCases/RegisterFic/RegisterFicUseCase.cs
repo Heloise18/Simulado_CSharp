@@ -15,7 +15,11 @@ public class RegisterFicUseCase(FicsDbContext ctx)
             Owner = request.Owner
 
         };
+        ctx.Fanfics.Add(Fic);
+        await ctx.SaveChangesAsync();
+
+        var response = new RegisterFicResponse(Fic.ID);
         
-        return Result<RegisterFicResponse>.Success(null);
+        return Result<RegisterFicResponse>.Success(response);
     }
 }
