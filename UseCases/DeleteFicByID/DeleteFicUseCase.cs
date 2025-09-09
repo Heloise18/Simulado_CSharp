@@ -8,7 +8,11 @@ public class DeleteFicUseCase(
 {
     public async Task<Result<DeleteFicResponse>> Do(DeleteFicRequest request)
     {
+
+        var user = await ctx.Users
+            .Include(u => u.Fanfics)
+            .FirstOrDefaultAsync(u => u.Name == request.UserName);
         
-        return Result<DeleteFicResponse>.Success(null);
+            return Result<DeleteFicResponse>.Success(null);
     }
 }
