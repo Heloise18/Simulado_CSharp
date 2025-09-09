@@ -16,6 +16,6 @@ public class RegisterFicUseCase(FicsDbContext ctx)
 
         };
         
-        return Result<RegisterFicResponse>.Success(response);
+        return Result<RegisterFicResponse>.Success(null);
     }
 }

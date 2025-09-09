@@ -7,12 +7,12 @@ public class EditListUseCase(FicsDbContext ctx, IJWTService jwt)
 {
     public async Task<Result<EditListResponse>> Do(EditListRequest request)
     {
-        var user = ctx.Users
+        // var user = ctx.Users
 
-        var verified = jwt.
+        // var verified = jwt.
 
 
-        CreateToken(user );
+        // CreateToken(user );
 
         return Result<EditListResponse>.Success(null);
     }
