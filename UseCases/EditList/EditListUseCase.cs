@@ -7,21 +7,20 @@ public class EditListUseCase(FicsDbContext ctx, IJWTService jwt)
 {
     public async Task<Result<EditListResponse>> Do(EditListRequest request)
     {
-        // var user = ctx.Users
+        var readList = await ctx.ReadLists
+            .FirstOrDefaultAsync(rl => rl.ID == request.ListID);
 
-        // var verified = jwt.
+        if (ReadList.OwnerID != request.OwnerData.ID)
+            return Result<EditListResponse>.Fail("Acesso negado!");
+
+        if (ReadList is null)
+            return  Result<EditListResponse>.Fail("ReadList não encontrada!");
 
 
-        // CreateToken(user );
+        var fic = readList.Fanfics.GetByID(request.FicId);
+        readList.Fanfics.Add(fic);
 
+        await ctx.SaveChangesAsync();
         return Result<EditListResponse>.Success(null);
     }
 }
-
-// var colletion = list.Fanfics
-//             .Select(r => new FanficData(
-//                 r.Title,
-//                 r.Owner.Name
-//             )
-            
-//             ).ToList();
