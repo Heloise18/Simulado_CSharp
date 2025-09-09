@@ -1,6 +1,9 @@
+using simulado.Payloads;
+
 namespace simulado.UseCases.EditList;
 
-public record EditListRequest (
-    Guid FanficID,
-    string UserName
+public record EditListRequest(
+    Guid ListID,
+    Guid FicId,
+    ICollection<UserData> OwnerData
 );

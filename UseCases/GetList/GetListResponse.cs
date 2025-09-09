@@ -1,6 +1,11 @@
+using simulado.Payloads;
+
 namespace simulado.UseCases.GetList;
 
 public record GetListResponse (
-    Guid FanficID,
-    string UserName
+    string Title, 
+    Guid ID,
+    DateTime LastChange,
+    ICollection<FanficData> FicData
+    
 );

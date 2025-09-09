@@ -5,10 +5,10 @@
 05.Definir UseCases X
 06.Definir Payloads e Responses dos Payloads X
 --validations X
-07.Implementar Endpoints usando UseCases 
+07.Implementar Endpoints usando UseCases  
 08.Configurar UseCases como serviços
-09.Definir Seviços
+09.Definir Seviços 
 10.Implementar UseCases
 11.Definir Testes (opcional kk)
-12.Implementar e Configurar Serviços (Configurar JWT)
+12.Implementar e Configurar Serviços (Configurar JWT) X
 13.Habilitar Swagger X

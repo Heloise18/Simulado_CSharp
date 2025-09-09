@@ -1,6 +1,10 @@
+using simulado.Entities;
+
 namespace simulado.UseCases.RegisterFic;
 
 public record RegisterFicRequest (
-    Guid FanficID,
-    string UserName
+    string Title,
+    string Text,
+    Guid OwnerID,
+    User Owner
 );

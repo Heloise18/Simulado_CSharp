@@ -21,13 +21,11 @@ public class FicsDbContext(DbContextOptions options) : DbContext(options)
         .HasForeignKey(f => f.OwnerID)
         .OnDelete(DeleteBehavior.NoAction);
 
-
         model.Entity<ReadList>()
         .HasOne(re => re.Owner)
         .WithMany(r => r.Lists)
         .HasForeignKey(re => re.OwnerID)
         .OnDelete(DeleteBehavior.NoAction);
-
 
         model.Entity<User>();
 

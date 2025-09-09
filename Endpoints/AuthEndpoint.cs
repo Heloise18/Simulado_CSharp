@@ -8,6 +8,6 @@ public static class AuthEndpoints
 {
     public static void ConfigureAuthEndpoints(this WebApplication app)
     {
-
+        
     }
 }

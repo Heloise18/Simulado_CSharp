@@ -1,8 +1,14 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using simulado.Entities;
+
 namespace simulado.Services.JWT;
 
 public class JWTService : IJWTService
 {
-    public string CreateToken(ProfileToAuth data)
+    public string CreateToken(User data )
     {
         var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
         var keyBytes = Encoding.UTF8.GetBytes(jwtSecret);
@@ -11,7 +17,7 @@ public class JWTService : IJWTService
         var jwt = new JwtSecurityToken(
             claims: [
                 new Claim(ClaimTypes.NameIdentifier, data.ID.ToString()),
-                new Claim(ClaimTypes.Name, data.Username),
+                new Claim(ClaimTypes.Name, data.Name),
                 new Claim(ClaimTypes.Email, data.Email)
             ],
             expires: DateTime.UtcNow.AddHours(2),

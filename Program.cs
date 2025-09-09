@@ -1,6 +1,7 @@
 
 
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using simulado.Endpoints;
@@ -11,12 +12,13 @@ using simulado.UseCases.EditList;
 using simulado.UseCases.GetList;
 using simulado.UseCases.RegisterFic;
 
-
-// using simulado.Services;
-// using Microsoft.AspNetCore.Authentication.JwtBearer;
+using simulado.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using simulado.Services.JWT;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // var strConnection = Environment.GetEnvironmentVariable("SQL_CONNECTION");
 //     builder.Services.AddDbContext<FicsDbContext>(options
@@ -28,7 +30,7 @@ builder.Services.AddDbContext<FicsDbContext>(options => {
     options.UseSqlServer(sqlConn);
 });
 
-//$env:SQL_CONNECTION = "Data Source=localhost/SQLEXPRESS22;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
+//$env:SQL_CONNECTION = "Data Source=localhost\SQLEXPRESS22;Initial Catalog=FanficsHelo;Trust Server Certificate=true;Integrated Security=true"
 
 
 builder.Services.AddTransient<RegisterFicUseCase>();
@@ -38,11 +40,12 @@ builder.Services.AddTransient<GetListUseCase>();
 builder.Services.AddTransient<AuthUseCase>();
 
 
-// builder.Services.AddSingleton<IJWTService, JWTService>();
+builder.Services.AddSingleton<IJWTService, JWTService>();
 
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
 var keyBytes = Encoding.UTF8.GetBytes(jwtSecret);
 var key = new SymmetricSecurityKey(keyBytes);
+
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
