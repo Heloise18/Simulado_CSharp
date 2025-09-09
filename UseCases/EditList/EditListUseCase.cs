@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using simulado.Entities;
 using simulado.Services.JWT;
 
@@ -13,13 +14,13 @@ public class EditListUseCase(FicsDbContext ctx)
         if (readList is null)
             return Result<EditListResponse>.Fail("ReadList não encontrada!");
 
-        if (readList.OwnerID != request.OwnerData.ID)
+        if (readList.OwnerID != request.OwnerID)
             return Result<EditListResponse>.Fail("Acesso negado!");
 
         var fic = await ctx.Fanfics.FirstOrDefaultAsync(f => f.ID == request.FicId);
         readList.Fanfics.Add(fic);
 
         await ctx.SaveChangesAsync();
-        return Result<EditListResponse>.Success(null);
+        return Result<EditListResponse>.Success(new EditListResponse());
     }
 }

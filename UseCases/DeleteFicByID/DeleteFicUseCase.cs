@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using simulado.Entities;
 
 namespace simulado.UseCases.DeleteFicByID;
@@ -8,13 +9,14 @@ public class DeleteFicUseCase(
 {
     public async Task<Result<DeleteFicResponse>> Do(DeleteFicRequest request)
     {
+        var fic = await ctx.Fanfics.FindAsync(request.FanficID);
 
-        var Fic = await ctx.Fanfics
-            .Include(f => f.Owner)
-            .Select(f => f.Owner == request.Owner);
+        if (fic.OwnerID != request.OwnerID)
+            return Result<DeleteFicResponse>.Fail("sl cara kkk");
 
-        ctx.Fanfics.DeleteFicByID(Fic);
+        ctx.Fanfics.Remove(fic);
+        await ctx.SaveChangesAsync();
         
-        return Result<DeleteFicResponse>.Success(null);
+        return Result<DeleteFicResponse>.Success(new DeleteFicResponse());
     }
 }
