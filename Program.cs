@@ -84,7 +84,7 @@ app.ConfigureGetListByTitleEndpoint();
 app.ConfigureAddFicByNameEndpoint();
 app.ConfigureRegisterFicEndpoint();
 app.ConfigureDeleteFicEndpoint();
-app.ConfigureAuthEndpoints();
+app.ConfigureAuthEndpoint();
 
 app.Run();
 

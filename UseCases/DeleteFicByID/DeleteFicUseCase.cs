@@ -12,7 +12,7 @@ public class DeleteFicUseCase(
         var fic = await ctx.Fanfics.FindAsync(request.FanficID);
 
         if (fic.OwnerID != request.OwnerID)
-            return Result<DeleteFicResponse>.Fail("sl cara kkk");
+            return Result<DeleteFicResponse>.Fail("Usuario não encontrado!");
 
         ctx.Fanfics.Remove(fic);
         await ctx.SaveChangesAsync();

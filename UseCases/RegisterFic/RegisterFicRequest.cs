@@ -1,4 +1,5 @@
 using simulado.Entities;
+using simulado.Validations;
 
 namespace simulado.UseCases.RegisterFic;
 

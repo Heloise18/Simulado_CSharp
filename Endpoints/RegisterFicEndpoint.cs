@@ -5,6 +5,6 @@ public static class RegisterFicEndpoint
 {
     public static void ConfigureRegisterFicEndpoint(this WebApplication app)
     {
-
+        
     }
 }

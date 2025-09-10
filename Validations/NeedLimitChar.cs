@@ -4,6 +4,7 @@ namespace simulado.Validations;
 
 public class NeedLimitCharAttribute : ValidationAttribute
 {
+    
     public override bool IsValid(object value)
     {
         if (!(value is string text))

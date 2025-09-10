@@ -20,6 +20,8 @@ public class EditListUseCase(FicsDbContext ctx)
         var fic = await ctx.Fanfics.FirstOrDefaultAsync(f => f.ID == request.FicId);
         readList.Fanfics.Add(fic);
 
+        readList.LastChange = DateTime.Now;
+
         await ctx.SaveChangesAsync();
         return Result<EditListResponse>.Success(new EditListResponse());
     }
