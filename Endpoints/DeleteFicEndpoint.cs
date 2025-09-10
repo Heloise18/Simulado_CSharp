@@ -30,7 +30,7 @@ public static class DeleteFicEndpoint
             var response = await usecase.Do(request);
 
             if (!response.IsSuccessfull && response.Reason == "Usuario não encontrado!")
-                return Results.Forbid();
+                return Results.Unauthorized();
             else if (!response.IsSuccessfull)
                 return Results.BadRequest();
             

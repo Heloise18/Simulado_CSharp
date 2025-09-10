@@ -11,9 +11,7 @@ public class RegisterFicUseCase(FicsDbContext ctx)
         {
             Title = request.Title,
             Text = request.Text,
-            OwnerID = request.OwnerID,
-            Owner = request.Owner
-
+            OwnerID = request.OwnerID
         };
         ctx.Fanfics.Add(Fic);
         await ctx.SaveChangesAsync();
